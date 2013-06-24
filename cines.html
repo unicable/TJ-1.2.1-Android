@@ -8,6 +8,7 @@
 <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="js/jquery-ui.js" type="text/javascript"></script>
 <script src="js/phonegap-1.0.0.js" type="text/javascript"></script>
+<script src="js/jquery.mobile-1.2.0.min.js" type="text/javascript"></script>
 <script>
 	var Variables;
   	if(location.search.substr(1)){
@@ -80,19 +81,18 @@
 	};
 	
 	document.addEventListener("backbutton", function () { 
-              navigator.notification.confirm(
-                        'Do you want to quit', 
-                        onConfirmQuit, 
-                        'QUIT TITLE', 
-                        'OK,Cancel'  
-                    );
-            }, true); 
+		navigator.notification.confirm(
+					'Do you want to quit', 
+					onConfirmQuit, 
+					'QUIT TITLE', 
+					'OK,Cancel'  
+				);
+		}, true);
 
-
-    function onConfirmQuit(button){
-       if(button == "1"){
-        navigator.app.exitApp(); 
-    }
+		function onConfirmQuit(button){
+		   if(button == "1"){
+			navigator.app.exitApp(); 
+		}
     }
 </script>
 </head>
