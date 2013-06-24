@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TodoJujuy</title>
+<link href="css/css.css" rel="stylesheet" />
+<script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui.js" type="text/javascript"></script>
+<script>
+$(document).ready(function(){		
+	var Variables;
+  	if(location.search.substr(1)){
+    	Variables = location.search.substr(1).split ('&');
+    	for (i = 0; i < Variables.length; i++) {
+      		Separ = Variables[i].split('=');
+      		eval ('var '+Separ[0]+'="'+Separ[1]+'"');
+    	}
+  	}	
+	
+	var ancho = $(window).width();
+	/* Sacamos el ancho de la ventana, no del documento $(document) */
+	var url = 'http://webservices.todojujuy.com/index.php?op=noticias&sid='+sid+'&callback=?';
+	
+	//Cargamos Notas portada
+	$.ajax({
+	  async: true,
+	  beforeSend: function() { $('#cargando').show(); }, //Show spinner
+      complete: function() { $('#cargando').hide(); }, //Hide spinner
+	  url : url,
+	  dataType : 'jsonp',
+	  success:function(data) {
+		  $.each(data.respData,function(index,value) {		  
+			  $('#noticia').append('<div class="fecha"><span class="seccion" style="color:'+value.seccion_color+'">'+value.seccion_nombre+'</span> '+ value.fecha_hora+'</div>');
+			  $('#noticia').append('<a href="ampliar.html?id='+value.id+'"><div class="titulo">'+value.titulo+'</div></a>');			
+			  $('#noticia').append('<a href="ampliar.html?id='+value.id+'"><div class="resumen res'+value.id+'">'+value.resumen+'</div></a>');
+			  if (value.imagen != '' && value.imagen != null) {
+				  $('.res'+value.id).prepend('<a href="ampliar.html?id='+value.id+'"><div class="imagen" id="imagen" data-id="'+value.id+'"><img src="http://todojujuy.com/imagenes/120x160/strict/img/'+value.imagen+'" width="120" height="120" /></div></a>');
+			  }
+			  $('#noticia').append('<div class="separador"></div>');
+		  });		  
+	  },
+	  error:function() {
+		  alert('Se ha producido un error al obtener la información actualizada. Intentelo nuevamente en unos instantes.');
+	  },
+	});
+	
+	//Cargamos secciones
+	$.ajax({
+	  url : 'http://webservices.todojujuy.com/index.php?op=secciones&callback=?',
+	  dataType : 'jsonp',
+	  success:function(data) {		  
+		  $.each(data.respData,function(index,value) {				  
+			  $('#lista_secciones').append('<a href="secciones.html?sid='+value.id+'"><div class="item">'+value.valor+'</div></a>');			  
+		  });
+		  $('#lista_secciones').append('<a href="javascript:ocultarMenu();"><div id="ocultar_menu_seccion">OCULTAR</div></a>');
+	  },
+	  error:function() {
+		  alert('Se ha producido un error al obtener la información actualizada. Intentelo nuevamente en unos instantes.');
+	  }
+	});
+});
+$(document).ready(function() {
+    $('#menu_secciones').click(function() { 
+		$('#lista_secciones').toggle( "blind" );
+	});
+});
+function ocultarMenu() {
+	$('#lista_secciones').toggle( "blind" );
+};
+</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="menu_back"><img src="img/blank.png" width="30" height="30" /></div>
+	<div id="menu_home"><img src="img/blank.png" width="30" height="30" /></div>
+	<a href="index.html"><img src="img/logo.png" width="140" height="38" /></a>
+    <div id="menu_secciones"><img src="img/menu.png" width="30" height="30" /></div>    
+    <div class="separador"></div>
+</div>
+<div id="lista_secciones">
+	<div class="lista_titulo">Selecciona la sección</div>
+</div>
+<div id="cargando">Cargando contenido, espere por favor...</div>
+<div id="sitewrap" style="margin:10px 0">
+<div id="content">	
+    <div class="wrapper-outer">
+        <div class="content-wrapper">        	
+        	<div id="noticia"></div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="fin"></div>   
+<div id="footer"><div id="menu_bottom">
+	<div class="item"><a href="#top"><img src="img/b_subir.png" width="30" height="30" /></a>
+    <div class="titulo">SUBIR</div></div>
+    <div class="item"><a href="farmacias.html"><img src="img/b_farmacia.png" width="30" height="30" /></a>
+      <div class="titulo">FARMACIAS</div></div>
+    <div class="item"><a href="cines.html"><img src="img/b_peli.png" width="30" height="30" /></a>
+      <div class="titulo">CINES</div></div>
+    <div class="item"><a href="clima.html?cod=332473"><img src="img/b_clima.png" width="30" height="30" /></a>
+    <div class="titulo">EL TIEMPO</div></div>
+    <div class="item"><a href="javascript:exitFromApp();"><img src="img/b_salir.png" width="30" height="30" /></a>
+    <div class="titulo">SALIR</div></div>
+</div></div>
+</body>
+</html>

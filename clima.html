@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TodoJujuy</title>
+<link href="css/css.css" rel="stylesheet" />
+<link href="css/nivo-slider.css" rel="stylesheet" type="text/css" media="screen" />
+<script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui.js" type="text/javascript"></script>
+<script>
+	var Variables;
+  	if(location.search.substr(1)){
+    	Variables = location.search.substr(1).split ('&');
+    	for (i = 0; i < Variables.length; i++) {
+      		Separ = Variables[i].split('=');
+      		eval ('var '+Separ[0]+'="'+Separ[1]+'"');
+    	}
+  	}		
+	
+	//Cines	
+  	$(document).ready(function(){		
+		var url = 'http://webservices.todojujuy.com/index.php?op=clima&cod='+cod+'&callback=?';			
+		var contenido_clima = '';		
+		$.ajax({
+		  async: true,
+		  beforeSend: function() { $('#cargando').show(); }, //Show spinner
+          complete: function() { $('#cargando').hide(); $('#seleccion').show(); }, //Hide spinner
+		  url : url,
+		  dataType : 'jsonp',
+		  success:function(data) {
+			  contenido_clima += '<div class="clima_detalle"><div class="clima_ciudad">'+data.respData.nombre_ciudad+'</div><div class="clima_nombre">'+data.respData.nombre+'</div><div class="clima_imagen"><img src="http://www.todojujuy.com/img/clima/'+data.respData.codigo+'.png" width="95" height="95" /><div class="clima_temperatura">'+data.respData.temperatura+'º</div></div><div class="datos_hum">Mínima<div class="humedad">'+data.respData.min+'º</div></div><div class="datos_pre">Máxima<div class="presion">'+data.respData.max+'º</div></div><div class="datos_hum">Humedad<div class="humedad">'+data.respData.humedad+'%</div></div><div class="datos_pre">Presión<div class="presion">'+data.respData.presion+' hPa</div></div><div class="datos_salida">Salida del sol <div class="salida">'+data.respData.sale_sol+'</div></div><div class="datos_puesta">Puesta del sol <div class="puesta">'+data.respData.puesta_sol+'</div></div><div class="extendido">Pronóstico extendido para el '+data.respData.extendido.fecha+'</div><img src="http://www.todojujuy.com/img/clima/head/'+data.respData.codigo+'.png" /><br />'+data.respData.extendido.nombre+'<br />Mín: '+data.respData.extendido.min+'º / Máx:'+data.respData.extendido.max+'º';
+			  contenido_clima += '</div>';
+			  $('#contenido').append(contenido_clima);			  
+		  },
+		  error:function() {
+			  alert('Se ha producido un error al obtener la información actualizada. Intentelo nuevamente en unos instantes.');
+		  },
+		});	
+		//Cargamos ciudades
+		$.ajax({
+		  url : 'http://webservices.todojujuy.com/index.php?op=ciudades_clima&callback=?',
+		  dataType : 'jsonp',
+		  success:function(data) {			  	  
+			  $.each(data.respData,function(index,value) {				  
+				  $('#sel_ciudad').append('<option value="'+value.id+'">'+value.valor+'</option>');			  
+			  });
+		  },
+		  error:function() {
+		  	alert('Se ha producido un error al obtener la información actualizada. Intentelo nuevamente en unos instantes.');
+	  	  },
+		});			
+		//Cargamos secciones
+		$.ajax({
+		  url : 'http://webservices.todojujuy.com/index.php?op=secciones&callback=?',
+		  dataType : 'jsonp',
+		  success:function(data) {		  
+			  $.each(data.respData,function(index,value) {				  
+				  $('#lista_secciones').append('<a href="secciones.html?sid='+value.id+'"><div class="item">'+value.valor+'</div></a>');			  
+			  });
+			  $('#lista_secciones').append('<a href="javascript:ocultarMenu();"><div id="ocultar_menu_seccion">OCULTAR</div></a>');
+		  },
+		  error:function() {
+		  	alert('Se ha producido un error al obtener la información actualizada. Intentelo nuevamente en unos instantes.');
+	  	  },
+		});				
+  	});
+	
+	$(document).ready(function(e) {
+		$('#menu_secciones').click(function() { 
+			$('#lista_secciones').toggle( 'blind' );
+		});
+		
+		$("#sel_ciudad").change(function() {
+			codigo = $(this).val();
+			window.location.href = 'clima.html?cod='+codigo;			
+		});
+	});
+	function ocultarMenu() {
+		$('#lista_secciones').toggle( "blind" );
+	};
+	function exitFromApp() {
+		System.exit(0);
+		navigator.app.exitApp();
+	};
+</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="menu_back"><a href="javascript:history.back();"><img src="img/back.png" width="30" height="30" /></a></div>
+    <div id="menu_home"><a href="index.html"><img src="img/b_home.png" width="30" height="30" /></a></div>
+	<a href="index.html"><img src="img/logo.png" width="140" height="38" /></a>
+    <div id="menu_secciones"><img src="img/menu.png" width="30" height="30" /></div>    
+    <div class="separador"></div>    
+</div>
+<div id="lista_secciones">
+	<div class="lista_titulo">Selecciona la sección</div>
+</div>
+<div id="cargando">Cargando contenido, espere por favor...</div>
+<div id="sitewrap" style="margin:10px 0">
+<div id="content">	
+    <div class="wrapper-outer">
+        <div class="content-wrapper">        	        	
+        	<div id="contenido">
+            	<div id="seleccion"><select name="sel_ciudad" id="sel_ciudad"><option selected="selected">Selecciona tu ciudad</option></select></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="fin"></div>
+<div id="footer">
+<div id="menu_bottom">
+	<div class="item"><a href="#top"><img src="img/b_subir.png" width="30" height="30" /></a>
+    <div class="titulo">SUBIR</div></div>
+    <div class="item"><a href="farmacias.html"><img src="img/b_farmacia.png" width="30" height="30" /></a>
+      <div class="titulo">FARMACIAS</div></div>
+    <div class="item"><a href="cines.html"><img src="img/b_peli.png" width="30" height="30" /></a>
+      <div class="titulo">CINES</div></div>
+    <div class="item"><a href="clima.html?cod=332473"><img src="img/b_clima.png" width="30" height="30" /></a>
+    <div class="titulo">EL TIEMPO</div></div>
+    <div class="item"><a href="javascript:exitFromApp();"><img src="img/b_salir.png" width="30" height="30" /></a>
+    <div class="titulo">SALIR</div></div>
+</div>
+</div>
+<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+	$('#slider').nivoSlider({
+		effect: 'fade',
+		animSpeed:500,
+	});
+});
+</script>
+</body>
+</html>
