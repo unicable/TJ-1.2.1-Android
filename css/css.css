@@ -464,10 +464,10 @@ body {
 }
 /***/
 #menu_bottom {
-	margin:0 auto;	
-	padding:5px 0;
+	margin:0 auto;
+	padding:0;		
 	width:100%;
-	height:43px;	
+	height:52px;	
 	float:left;
 	position:fixed;
 	background-color:#ECECFB;
@@ -475,10 +475,15 @@ body {
 	bottom:0px;	
 	border-top:1px solid #E2E2E2;
 }
-#menu_bottom .item {
-	text-align:center;
+#menu_bottom a {
+	padding:5px 0;
+	text-decoration:none;
 	width:20%;
 	float:left;
+}
+#menu_bottom .item {
+	text-align:center;
+	width:100%;
 }
 #menu_bottom .item .titulo {
 	font-size:9px;
