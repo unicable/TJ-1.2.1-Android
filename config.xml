@@ -32,4 +32,6 @@ MF
 <preference name="splash-screen-duration" value="6000" />
 <preference name="permissions" value="none" />
 <preference name="orientation" value="portrait" />
+<preference name="FadeSplashScreen" value="true" />
+<preference name="FadeSplashScreenDuration" value="2" />
 </widget>
