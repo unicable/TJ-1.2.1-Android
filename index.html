@@ -98,20 +98,6 @@ $(document).ready(function(e) {
 function ocultarMenu() {
 	$('#lista_secciones').toggle( "blind" );
 };
-
-function exitAppPopup() {
-	navigator.notification.confirm(
-		  'Exit PhoneGap ' + device.cordova + ' Demo?'
-		, function(button) {
-			  if (button == 2) {
-				  navigator.app.exitApp();
-			  }
-		  }
-		, 'Exit'
-		, 'No,Yes'
-	);  
-	return false;
-}
 </script>
 </head>
 
