@@ -103,7 +103,7 @@
 			  $.each(data.respData,function(index,value) {				  
 				  $('#lista_secciones').append('<a href="secciones.html?sid='+value.id+'"><div class="item">'+value.valor+'</div></a>');			  
 			  });
-			  $('#lista_secciones').append('<a href="javascript:ocultarMenu();"><div id="ocultar_menu_seccion">OCULTAR</div></a>');
+			  $('#lista_secciones').append('<a href="javascript:ocultarMenu();"><div id="ocultar_menu_seccion"></div></a>');
 		  },
 		  error:function() {
 			  alert('Se ha producido un error al obtener la información actualizada. Intentelo nuevamente en unos instantes.');
