@@ -471,7 +471,7 @@ body {
 	height:52px;
 	position:fixed;
 	background-color:#ECECFB;
-	z-index:9999;
+	z-index:99999;
 	bottom:0px;	
 	border-top:1px solid #E2E2E2;
 }
