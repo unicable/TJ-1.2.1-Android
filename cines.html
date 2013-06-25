@@ -44,11 +44,11 @@
 			  $('#contenido').append(contenido_cines);
 		  },
 		  error:function() {
-		  alert('Se ha producido un error al obtener la información actualizada. Intentelo nuevamente en unos instantes.');
-	  },
-		});	
+		 	alert('Se ha producido un error al obtener la información actualizada. Intentelo nuevamente en unos instantes.');
+	  	  },
+	   });	
 		
-		//Cargamos secciones
+	   //Cargamos secciones
 		$.ajax({
 		  url : 'http://webservices.todojujuy.com/index.php?op=secciones&callback=?',
 		  dataType : 'jsonp',
@@ -61,7 +61,7 @@
 		  error:function() {
 			  alert('Se ha producido un error al obtener la información actualizada. Intentelo nuevamente en unos instantes.');
 		  }
-		});				
+		});
   	});
 	
 	$(document).ready(function(e) {
