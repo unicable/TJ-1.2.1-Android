@@ -77,7 +77,25 @@
 		$('#mapa_oculto_'+id).toggle();
 		if ($('#mapa_oculto_'+id).is(":visible")) $('#link_mostrar_'+id).html('Ocultar Mapa');
 		else $('#link_mostrar_'+id).html('Mostrar Mapa');
-	}
+	};
+document.addEventListener("deviceready", deviceInfo, true);
+document.addEventListener("backbutton", function(e){
+	navigator.app.exitApp();		
+}, false);
+
+function exitAppPopup() {
+	navigator.notification.confirm(
+		  'Salir de TodoJujuy.com?'
+		, function(button) {
+			  if (button == 2) {
+				  navigator.app.exitApp();
+			  }
+		  }
+		, 'Salir'
+		, 'No,Si'
+	);  
+	return false;
+}		
 </script>
 </head>
 

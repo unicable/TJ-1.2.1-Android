@@ -69,6 +69,25 @@ $(document).ready(function() {
 function ocultarMenu() {
 	$('#lista_secciones').toggle( "blind" );
 };
+
+document.addEventListener("deviceready", deviceInfo, true);
+document.addEventListener("backbutton", function(e){
+	navigator.app.exitApp();		
+}, false);
+
+function exitAppPopup() {
+	navigator.notification.confirm(
+		  'Salir de TodoJujuy.com?'
+		, function(button) {
+			  if (button == 2) {
+				  navigator.app.exitApp();
+			  }
+		  }
+		, 'Salir'
+		, 'No,Si'
+	);  
+	return false;
+}
 </script>
 </head>
 
