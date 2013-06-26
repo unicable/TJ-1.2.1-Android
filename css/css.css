@@ -14,13 +14,25 @@ body {
 	position:fixed;
 	top:0;
 	float: left;
-	font-size: 11px;
 	color: #CCC;
 	background: #F5F5F5;
 	text-align: center;
 	line-height: 40px;
 	height: 40px;
-	text-align: center;
+	overflow:hidden
+}
+#header .m1{
+	width:33%;
+	float:left;
+}
+#header .m2{
+	width:34%;
+	text-align:center;
+	float:left;	
+}
+#header .m3{
+	width:33%;
+	float:left;	
 }
 #header .separador {
 	width:100%;
