@@ -479,18 +479,17 @@ body {
 	border-top:1px solid #E2E2E2;
 	background-color:#ECECFB;
 }
-#menu_bottom a {
-	padding:3px 0;	
-	text-decoration:none;
-	width:20%;
-	float:left;
+#menu_bottom a {		
+	text-decoration:none;	
 }
 #menu_bottom a:hover {
 	background-color:#DBDDDD
 }
 #menu_bottom .item {
 	text-align:center;
-	width:100%;
+	padding:3px 0;
+	width:20%;
+	float:left;
 }
 #menu_bottom .item .titulo {
 	font-size:9px;
