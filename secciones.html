@@ -62,11 +62,11 @@ $(document).ready(function(){
 });
 $(document).ready(function() {
     $('#menu_secciones').click(function() { 
-		$('#lista_secciones').toggle( "blind" );
+		$('#secciones').toggle( "blind" );
 	});
 });
 function ocultarMenu() {
-	$('#lista_secciones').toggle( "blind" );
+	$('#secciones').toggle( "blind" );
 };
 
 document.addEventListener("deviceready", deviceInfo, true);
@@ -98,8 +98,9 @@ function exitAppPopup() {
     <div id="menu_secciones"><img src="img/menu.png" width="30" height="30" /></div>    
     <div class="separador"></div>
 </div>
-<div id="lista_secciones">
+<div id="secciones">
 	<div class="lista_titulo">Selecciona la sección</div>
+    <div id="lista_secciones"></div>
 </div>
 <div id="cargando">Cargando contenido, espere por favor...</div>
 <div id="sitewrap" style="margin:10px 0">

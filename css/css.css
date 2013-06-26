@@ -74,21 +74,21 @@ body {
 	top:4px;
 	left:4px;
 }
-#lista_secciones {
+#secciones {
 	display:none;
 	background:#525252;
 	width:100%;
-	text-align:center;
 	position:fixed;
 	z-index:9999;
 	top:40px;
+	text-align:center;
 	float:left;	
 }
-#lista_secciones a{
+#secciones a{
 	text-decoration:none;
 	text-transform:uppercase;
 }
-#lista_secciones .lista_titulo {
+#secciones .lista_titulo {
 	line-height:26px;
 	font-size:11px;
 	color:#313131;
@@ -96,6 +96,10 @@ body {
 	width:100%;
 	float:left;
 	margin:0 auto;	
+}
+#lista_secciones {	
+	width:100%;	
+	float:left;	
 }
 #lista_secciones .item{
 	line-height:30px;
