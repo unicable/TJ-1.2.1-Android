@@ -103,6 +103,7 @@ body {
 }
 #lista_secciones .item{
 	line-height:30px;
+	height:30px;
 	font-size:14px;
 	color:#F5F5F5;
 	border-bottom:1px dotted #666666;
