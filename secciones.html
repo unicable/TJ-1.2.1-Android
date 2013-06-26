@@ -51,7 +51,7 @@ $(document).ready(function(){
 	  dataType : 'jsonp',
 	  success:function(data) {		  
 		  $.each(data.respData,function(index,value) {				  
-			  $('#lista_secciones').append('<a href="secciones.html?sid='+value.id+'"><div class="item">'+value.valor+'</div></a>');			  
+			  $('#lista_secciones').append('<div class="item"><a href="secciones.html?sid='+value.id+'">'+value.valor+'</a></div>');			  
 		  });
 		  $('#lista_secciones').append('<a href="javascript:ocultarMenu();"><div id="ocultar_menu_seccion"></div></a>');
 	  },
