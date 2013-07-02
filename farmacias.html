@@ -29,6 +29,7 @@
 		  url : url,
 		  dataType : 'jsonp',
 		  success:function(data) {
+			  $('#titular').append(' para hoy '+data.fecha);
 			  $.each(data.respData,function(index,value) {
 				  contenido += '<div class="farmacia_localidad">'+value.localidad+'</div>';
 				  $.each(value.farmacias,function(index,val) {

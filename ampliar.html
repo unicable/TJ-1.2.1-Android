@@ -30,7 +30,7 @@
 		  success:function(data) {			  		  
 				var value = data.respData;
 				seccion_id = data.respData.seccion_id;
-				var contenido = '<div class="fecha">'+ value.fecha_hora+' <span class="seccion" style="color:'+value.seccion_color+'">'+value.seccion_nombre+'</span></div>';
+				var contenido = '<div class="fecha">'+ value.fecha_hora+' <span class="seccion" style="color:'+value.seccion_color+'">'+value.seccion_nombre+'</span><span class="face"><a href="https://www.facebook.com/sharer/sharer.php?u='+value.url+'" target="_blank"><img src="img/face.png" width="20" height="20" /></a></span><span class="tuit"><a href="http://www.twitter.com/share?url='+value.url+'&text='+value.titulo+'" target="_blank"><img src="img/tuit.png" width="20" height="20" /></a></span><span class="compartir">COMPARTIR</span></div>';
 				if (value.introduccion != '' && value.introduccion != null)
 				  contenido += '<div class="introduccion">'+value.introduccion+'</div>';
 				contenido += '<div class="titulo">'+value.titulo+'</div>';	
@@ -86,7 +86,7 @@
 		  success:function(data) {
 			  if (data.respError == false) $('#lista_relacionadas').show();
 			  $.each(data.respData,function(index,value) {				  
-				  $('#lista_relacionadas').append('<a href="ampliar.html?id='+value.id+'"><div id="item_relacionado"><div class="imagen"><img src="http://todojujuy.com/imagenes/100x50/strict/img/'+value.imagen+'" width="100" height="50" /></div>'+value.titulo+'</div></a>');					  		    
+				  $('#lista_relacionadas').append('<a href="ampliar.html?id='+value.id+'"><div id="item_relacionado"><div class="imagen"><img src="http://todojujuy.com/imagenes/100x50/strict/img/'+value.imagen+'" width="100" height="50" /></div>'+value.titulo+'</div></a>');			  		    
 			  });
 		  },
 		  error:function() {

@@ -653,6 +653,25 @@ body {
 	float:left;
 	text-align:center;
 }
+.compartir {
+	font-size:11px;
+	float:right;
+	margin:0 2px;
+}
+.face {
+	background-color:#4875B2;
+	width:20px;
+	height:20px;
+	margin:0 2px;
+	float:right;
+}
+.tuit {
+	background-color:#00BCF3;
+	width:20px;
+	height:20px;
+	margin:0 2px;
+	float:right;	
+}
 /****/
 #fin {
 	width:100%;
