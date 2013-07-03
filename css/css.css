@@ -663,15 +663,23 @@ body {
 }
 #compartir .face {
 	background-color:#4875B2;
-	width:120px;
-	height:42px;
+	background:url(../img/face.png) no-repeat left center;
+	padding-left:23px;
+	line-height:32px;
+	width:68px;
+	color:#FFF;	
+	height:32px;
 	float:right;
 }
 #compartir .tuit {
 	background-color:#00BCF3;
-	width:120px;
-	height:42px;
-	margin:0 5px;
+	background:url(../img/tuit.png) no-repeat left center;
+	padding-left:23px;
+	line-height:32px;	
+	color:#FFF;
+	width:68px;
+	height:32px;
+	margin:0 2px;
 	float:right;	
 }
 /****/

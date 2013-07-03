@@ -43,7 +43,7 @@
 				seccion_id = data.respData.seccion_id;
 				var urlface = "'https://www.facebook.com/sharer/sharer.php?u="+value.url+"'";
 				var urltuit = "'http://www.twitter.com/share?url="+value.url+"&text="+value.titulo+"'";
-				$('#compartir').append('<span class="face"><img onclick="loadURL('+urlface+');" src="img/face.png" width="120" height="42" /></span><span class="tuit"><img onclick="loadURL('+urltuit+');" src="img/tuit.png" width="120" height="42" /></span>');
+				$('#compartir').append('<span class="face" onclick="loadURL('+urlface+');">COMPARTIR</span><span class="tuit" onclick="loadURL('+urltuit+');">COMPARTIR</span>');
 				var contenido = '<div class="fecha">'+ value.fecha_hora+' <span class="seccion" style="color:'+value.seccion_color+'">'+value.seccion_nombre+'</span></div>';
 				if (value.introduccion != '' && value.introduccion != null)
 				  contenido += '<div class="introduccion">'+value.introduccion+'</div>';
