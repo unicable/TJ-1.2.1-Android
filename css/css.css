@@ -655,23 +655,23 @@ body {
 	float:left;
 	text-align:center;
 }
-.compartir {
-	font-size:11px;
-	float:right;
-	margin:0 2px;
+#compartir {
+	width:100%;
+	float:left;
+	padding:6px 0;
+	line-height:20px;
 }
-.face {
+#compartir .face {
 	background-color:#4875B2;
-	width:20px;
-	height:20px;
-	margin:0 2px;
+	width:120px;
+	height:42px;
 	float:right;
 }
-.tuit {
+#compartir .tuit {
 	background-color:#00BCF3;
-	width:20px;
-	height:20px;
-	margin:0 2px;
+	width:120px;
+	height:42px;
+	margin:0 5px;
 	float:right;	
 }
 /****/

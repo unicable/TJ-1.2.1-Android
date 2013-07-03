@@ -43,7 +43,8 @@
 				seccion_id = data.respData.seccion_id;
 				var urlface = "'https://www.facebook.com/sharer/sharer.php?u="+value.url+"'";
 				var urltuit = "'http://www.twitter.com/share?url="+value.url+"&text="+value.titulo+"'";
-				var contenido = '<div class="fecha">'+ value.fecha_hora+' <span class="seccion" style="color:'+value.seccion_color+'">'+value.seccion_nombre+'</span><span class="face"><img onclick="loadURL('+urlface+');" src="img/face.png" width="20" height="20" /></span><span class="tuit"><img onclick="loadURL('+urltuit+');" src="img/tuit.png" width="20" height="20" /></span><span class="compartir">COMPARTIR</span></div>';
+				$('#compartir').append('<span class="face"><img onclick="loadURL('+urlface+');" src="img/face.png" width="120" height="42" /></span><span class="tuit"><img onclick="loadURL('+urltuit+');" src="img/tuit.png" width="120" height="42" /></span>');
+				var contenido = '<div class="fecha">'+ value.fecha_hora+' <span class="seccion" style="color:'+value.seccion_color+'">'+value.seccion_nombre+'</span></div>';
 				if (value.introduccion != '' && value.introduccion != null)
 				  contenido += '<div class="introduccion">'+value.introduccion+'</div>';
 				contenido += '<div class="titulo">'+value.titulo+'</div>';	
@@ -199,6 +200,7 @@ function exitAppPopup() {
                     </div>
                 </div>
             </div>
+            <div id="compartir"></div>
             <div id="noticia" class="cuerpo"></div>
             <div id="lista_relacionadas">
             	<div class="titulo">Notas relacionadas:</div>                          
