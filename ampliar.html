@@ -25,7 +25,6 @@
 		});
 		
 		function loadURL(url){
-			alert('wow');
 			navigator.app.loadUrl(url, { openExternal:true });			
 			return false;
 		}
@@ -44,7 +43,7 @@
 				seccion_id = data.respData.seccion_id;
 				var urlface = "'https://www.facebook.com/sharer/sharer.php?u="+value.url+"'";
 				var urltuit = "'http://www.twitter.com/share?url="+value.url+"&text="+value.titulo+"'";
-				var contenido = '<div class="fecha">'+ value.fecha_hora+' <span class="seccion" style="color:'+value.seccion_color+'">'+value.seccion_nombre+'</span><span class="face"><img onclick="loadURL('+urlface+');" src="img/face.png" width="20" height="20" /></span><span class="tuit"><a click="loadURL('+urltuit+')"><img src="img/tuit.png" width="20" height="20" /></a></span><span class="compartir">COMPARTIR</span></div>';
+				var contenido = '<div class="fecha">'+ value.fecha_hora+' <span class="seccion" style="color:'+value.seccion_color+'">'+value.seccion_nombre+'</span><span class="face"><img onclick="loadURL('+urlface+');" src="img/face.png" width="20" height="20" /></span><span class="tuit"><img onclick="loadURL('+urltuit+');" src="img/tuit.png" width="20" height="20" /></span><span class="compartir">COMPARTIR</span></div>';
 				if (value.introduccion != '' && value.introduccion != null)
 				  contenido += '<div class="introduccion">'+value.introduccion+'</div>';
 				contenido += '<div class="titulo">'+value.titulo+'</div>';	
@@ -53,13 +52,19 @@
 				contenido += '<div class="copete">'+value.resumen+'</div>';
 				$('#noticia.cabecera').append(contenido);	
 				if (value.cantidad_imagen == 1 ) {
-					if (value.id_video_youtube != '') $('#noticia.cabecera').append('<div class="link_video"><a href="http://www.youtube.com/watch?v='+value.id_video_youtube+'" class="video_nota">Incluye video</a></div>');
+					if (value.id_video_youtube != '') {
+						var urlyout = "'http://www.youtube.com/watch?v="+value.id_video_youtube+"'";
+						$('#noticia.cabecera').append('<div class="link_video"><a class="video_nota" onclick="loadURL('+urlyout+');">Incluye video</a></div>');
+					}
 				  	var imagen = '<div class="imagen_ampliada"><img src="http://todojujuy.com/imagenes/500x400/strict/img/'+value.imagen[0].ni_archivo+'" width="100%" height="208" /></div>';
 				  $('#noticia.cabecera').append(imagen);
 				}
 				else {
 				  	if (value.cantidad_imagen > 1 ) {
-						if (value.id_video_youtube != '') $('#noticia.cabecera').append('<div class="link_video"><a href="http://www.youtube.com/watch?v='+value.id_video_youtube+'" class="video_nota">Incluye video</a></div>');
+						if (value.id_video_youtube != '') {
+							var urlyout = "'http://www.youtube.com/watch?v="+value.id_video_youtube+"'";
+							$('#noticia.cabecera').append('<div class="link_video"><a class="video_nota" onclick="loadURL('+urlyout+');">Incluye video</a></div>');
+						}
 					  	var imagenes = '';					  
 					  	$.each(value.imagen,function(index,valor) {
 						  imagenes += '<img src="http://todojujuy.com/imagenes/400x300/strict/img/'+valor.ni_archivo+'"  width="100%" height="208" />';
@@ -68,7 +73,10 @@
 					  	$('#slide-imagenes').show();					  
 				  	}
 					else { //Verificamos si solo tiene video
-				  		if (value.id_video_youtube != '') $('#noticia.cabecera').append('<div class="imagen_ampliada"><img src="http://img.youtube.com/vi/'+value.id_video_youtube+'/0.jpg" width="100%" height="208" /></div>');
+				  		if (value.id_video_youtube != '') {
+							var urlyout = "'http://www.youtube.com/watch?v="+value.id_video_youtube+"'";
+							$('#noticia.cabecera').append('<div class="link_video"><a class="video_nota" onclick="loadURL('+urlyout+');">Incluye video</a></div>');
+						}
 				  	}
 				}
 				var contenido2 = '<div class="resumen">'+value.cuerpo+'</div>';			  
