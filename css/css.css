@@ -315,6 +315,7 @@ body {
 #noticia .imagen_ampliada {
 	padding:2px;
 	border:1px solid #E8E8E8;
+	width:100%;
 	float:left;
 }
 #noticia .resumen {
@@ -673,6 +674,19 @@ body {
 	float:right;	
 }
 /****/
+.link_video {
+	margin:10px 0;
+	float:left;
+}
+.video_nota {
+	background-color: #EFEFEF;
+	border-top:2px dashed #DBDBDB;
+	border-bottom:2px dashed #DBDBDB;
+	color:#333 !important;
+	cursor:pointer;
+	padding:2px 4px;
+	margin-top:10px;
+}
 #fin {
 	width:100%;
 	float:left;
