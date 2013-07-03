@@ -75,7 +75,7 @@
 					else { //Verificamos si solo tiene video
 				  		if (value.id_video_youtube != '') {
 							var urlyout = "'http://www.youtube.com/watch?v="+value.id_video_youtube+"'";
-							$('#noticia.cabecera').append('<div class="link_video"><a class="video_nota" onclick="loadURL('+urlyout+');">Incluye video</a></div>');
+							$('#noticia.cabecera').append('<a onclick="loadURL('+urlyout+');"><div class="imagen_ampliada"><div class="video_yt"></div><img src="http://img.youtube.com/vi/'+value.id_video_youtube+'/0.jpg" width="100%" height="208" /></div></a>');
 						}
 				  	}
 				}
