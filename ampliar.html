@@ -18,7 +18,17 @@
     	}
   	}
 	var seccion_id = '';
-  	$(document).ready(function(){
+  	$(document).ready(function(){		
+		$('.link').live('tap', function() {
+			url = $(this).attr("rel");   
+			loadURL(url);
+		});
+		
+		function loadURL(url){
+			navigator.app.loadUrl(url, { openExternal:true });
+			return false;
+		}
+		
 		var url = 'http://webservices.todojujuy.com/index.php?op=ampliar&id='+id+'&callback=?';
 		
 		$.ajax({
@@ -30,7 +40,7 @@
 		  success:function(data) {			  		  
 				var value = data.respData;
 				seccion_id = data.respData.seccion_id;
-				var contenido = '<div class="fecha">'+ value.fecha_hora+' <span class="seccion" style="color:'+value.seccion_color+'">'+value.seccion_nombre+'</span><span class="face"><a href="https://www.facebook.com/sharer/sharer.php?u='+value.url+'" target="_blank"><img src="img/face.png" width="20" height="20" /></a></span><span class="tuit"><a href="http://www.twitter.com/share?url='+value.url+'&text='+value.titulo+'" target="_blank"><img src="img/tuit.png" width="20" height="20" /></a></span><span class="compartir">COMPARTIR</span></div>';
+				var contenido = '<div class="fecha">'+ value.fecha_hora+' <span class="seccion" style="color:'+value.seccion_color+'">'+value.seccion_nombre+'</span><span class="face"><a href="https://www.facebook.com/sharer/sharer.php?u='+value.url+'" target="_blank" class="link"><img src="img/face.png" width="20" height="20" /></a></span><span class="tuit"><a href="http://www.twitter.com/share?url='+value.url+'&text='+value.titulo+'" target="_blank"><img src="img/tuit.png" width="20" height="20" /></a></span><span class="compartir">COMPARTIR</span></div>';
 				if (value.introduccion != '' && value.introduccion != null)
 				  contenido += '<div class="introduccion">'+value.introduccion+'</div>';
 				contenido += '<div class="titulo">'+value.titulo+'</div>';	
